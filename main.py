@@ -16,11 +16,12 @@ while True:
         print_table(table)
         print("Ход крестиков") if xstep else print("Ход ноликов")
         move = input()
-        if not len(move) == 2 or not 0 <= int(move[0]) <= 2 or not 0 <= int(move[1]) <= 2:
+        if len(move) == 2 and any([move[0]=="0", move[0]=="1", move[0]=="2"]) and any([move[1]=="0", move[1]=="1", move[1]=="2"]):
+            correct_move = True
+        else:
             print("Не корректный формат хода")
             print(format)
-        else:
-            correct_move = True
+
     # изменение поля
     i = int(move[0])
     j = int(move[1])
@@ -41,7 +42,7 @@ while True:
         else:
             break
     if inline == 3:
-        print_table()
+        print_table(table)
         print("Победили крестики") if xstep else print("Победили нолики")
         break
     # строки
@@ -52,7 +53,7 @@ while True:
         else:
             break
     if inline == 3:
-        print_table()
+        print_table(table)
         print("Победили крестики") if xstep else print("Победили нолики")
         break
     # диаганали
@@ -62,7 +63,7 @@ while True:
         if table[k][k] == value:
             indiag1 += 1
         if table[k][2-k] == value:
-            indiag2 += 100
+            indiag2 += 1
     if indiag1 == 3 or indiag2 ==3:
         print_table(table)
         print("Победили крестики") if xstep else print("Победили нолики")
