@@ -1,4 +1,4 @@
-format = "Формат хода двузначное число. Первая цифра - строка (0-2), вторая цифра столбец (0-2)"
+format = "Формат хода двузначное число. Первая цифра - строка (0-2), вторая цифра - столбец (0-2)"
 print(format)
 xstep = True
 table = [["-", "-", "-"], ["-", "-", "-"], ["-", "-", "-"]]
@@ -8,6 +8,7 @@ def print_table (table):
     for string in table:
         print(k, *string)
         k += 1
+
 while True:
     correct_move = False
     # проверка корректности ввода
@@ -15,7 +16,8 @@ while True:
         print_table(table)
         print("Ход крестиков") if xstep else print("Ход ноликов")
         move = input()
-        if len(move) == 2 and any([move[0]=="0", move[0]=="1", move[0]=="2"]) and any([move[1]=="0", move[1]=="1", move[1]=="2"]):
+        correct_value = ["0", "1", "2"]
+        if len(move) == 2 and correct_value.count(move[0]) and correct_value.count(move[1]):
             correct_move = True
         else:
             print("Не корректный формат хода")
